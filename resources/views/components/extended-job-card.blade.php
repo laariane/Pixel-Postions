@@ -1,6 +1,6 @@
 <x-panel class="justify-between">
     <div class="flex  space-x-5">
-    <img src="http://picsum.photos/seed/{{random_int(1,10000000)}}/100/100" alt=""  class="rounded-xl">
+    <x-employer-logo  :width=100 ></x-employer-logo>
         <div class="flex flex-col space-y-5">
             <div>
 
