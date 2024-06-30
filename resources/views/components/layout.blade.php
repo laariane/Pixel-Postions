@@ -30,7 +30,7 @@
 
     </nav>
 
-    <main class="mt-10 max-w-[986px] mx-auto">
+    <main class="mt-10 max-w-[1200px] mx-auto">
     {{$slot}}
     </main>
 </div>

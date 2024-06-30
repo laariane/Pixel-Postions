@@ -11,8 +11,13 @@ export default {
         extend: {
             colors:{
                 "black":"#060606"
+
+            },
+            fontSize: {
+                xxs: '0.55rem',
             }
         },
+
     },
     plugins: [],
 }
