@@ -23,8 +23,11 @@
             <a href="#">Salaries</a>
             <a href="#">Companies</a>
         </div>
-        <div>
+        <div class="space-x-5">
+            {{--TODO need to add routes to this link create and post--}}
             <a href="">Post a job</a>
+            <a href="/login">Login</a>
+            <a href="/register">Regsiter</a>
         </div>
         </div>
 
