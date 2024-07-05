@@ -6,17 +6,16 @@
             <h1 class="text-4xl font-bold text-center">Let's find you a job</h1>
             <form action="" class="w-full ">
                 <input placeholder="Web Developer..." type="text"
-                       class=" border px-5 py-3  bg-white/5 border-white/10 rounded-lg w-full">
+                    class=" border px-5 py-3  bg-white/5 border-white/10 rounded-lg w-full">
             </form>
         </section>
         <section>
             <x-section-heading>Hot Jobs</x-section-heading>
             <div class="grid lg:grid-cols-3 sm:grid-cols-1 gap-8 mt-6">
-                @foreach($jobs as $job)
-                    @if($job->featured==="true")
-                <x-job-card :$job></x-job-card>
+                @foreach ($jobs as $job)
+                    @if ($job->featured === 'true')
+                        <x-job-card :$job></x-job-card>
                     @else
-
                     @endif
                 @endforeach
 
@@ -26,8 +25,8 @@
         <section>
             <x-section-heading>Tags</x-section-heading>
             <div class="mt-6  flex flex-row items-center  flex-wrap gap-x-2 gap-y-2 ">
-                @foreach($tags as $tag )
-                <x-tag :$tag  ></x-tag>
+                @foreach ($tags as $tag)
+                    <x-tag :$tag></x-tag>
                 @endforeach
             </div>
 
@@ -45,11 +44,9 @@
                 </div>
             </div>
             <div class="flex flex-col space-y-4 mb<-6 ">
-                @foreach($jobs as $job)
-                <x-extended-job-card :$job  ></x-extended-job-card>
+                @foreach ($jobs as $job)
+                    <x-extended-job-card :$job></x-extended-job-card>
                 @endforeach
-
-
             </div>
         </section>
     </div>
