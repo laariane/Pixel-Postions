@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -16,7 +19,8 @@ class JobController extends Controller
     public function index() : View
     {
         return view('jobs.index', [
-            'jobs' =>Job::with(["tags","employer"])->get(),
+            'jobs' =>Job::with('employer','tags')->orderBy('created_at', 'desc')->paginate(10),
+            "featuredJobs"=>Job::with("employer","tags")->orderBy('created_at', 'desc')->groupBy("featured")->paginate(3),
             'tags'=>Tag::all()
         ]);
     }
@@ -26,7 +30,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view("jobs.create");
     }
 
     /**
@@ -34,7 +38,23 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+        $jobData=$request->validate([
+           "title"=>"required",
+           "salary"=>"required",
+           "location"=>"required",
+           "schedule"=>["required",Rule::in(["Part Time","Full Time","Freelance"])],
+            "url"=>"required|active_url",
+        ]);
+        $jobData["featured"]= $request->input("featured");
+        $job=Auth::user()->employer->jobs()->create($jobData);
+        $tags=$request->input("tags");
+        if(!empty($tags)){
+            $tags=explode(",",$tags);
+            foreach($tags as $tag){
+                $job->tag($tag);
+            }
+        }
+   return redirect("/");
     }
 
     /**

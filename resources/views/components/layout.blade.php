@@ -21,9 +21,8 @@
                         </a>
                     </div>
                     <div class="space-x-2 ml-14 font-bold">
-                        <a href="#">Jobs</a>
+                        <a href="/">Jobs</a>
                         <a href="#">Careers</a>
-                        <a href="" class="border rounded-xl px-1 py-1 bg-white/10 hover:bg-white/50 ">Post a job</a>
                         <a href="#">Salaries</a>
                         <a href="#">Companies</a>
                     </div>
@@ -37,9 +36,9 @@
                             @csrf
                             @method("DELETE")
                             </form>
+                                <a href="/jobs/create" class="border rounded-xl px-2 mx-2 py-1 bg-white/10 hover:bg-white/50 ">Post a job</a>
                             <button  form="logout_form" type="submit">Logout</button>
                         @endauth
-
                     </div>
                 </div>
 

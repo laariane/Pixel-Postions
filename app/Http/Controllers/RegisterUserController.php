@@ -34,25 +34,27 @@ class RegisterUserController extends Controller
      */
     public function store(Request $request) : RedirectResponse
     {
-        $validated=request()->validate([
+        $userValidated=request()->validate([
             "name"=>"required|max:20|min:3",
             "email"=>["required","unique:users","confirmed"],
             "password"=>["required",Password::min(8)->mixedCase()->symbols(),"confirmed"]
         ]);
-        $user = new User($validated);
+
+        $employerValidated=request()->validate([
+            "employer"=>"required|max:20|min:3",
+            "logo"=>["required","image"],
+        ]);
+
+        $user = new User($userValidated);
         $user->save();
+        $logoPath=$request->logo->store("logos");
+        $user->employer()->create([
+            "name"=>$employerValidated["employer"],
+            "logo"=>$logoPath
+        ]);
         Auth::login($user);
         return redirect('/');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */

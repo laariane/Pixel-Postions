@@ -8,7 +8,7 @@ class Job extends Model
 {
     use HasFactory;
 
-
+    protected $guarded=[];
     public function tag($string){
         if($string!==null){
             $tag=Tag::firstOrCreate(['name' => $string]);

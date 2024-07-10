@@ -1,7 +1,8 @@
 @props(['job'])
+
 <x-panel class="justify-between">
     <div class="flex  space-x-5">
-    <x-employer-logo  :width=100 ></x-employer-logo>
+    <x-employer-logo :width="100"  class="w-[100px]" :$job ></x-employer-logo>
         <div class="flex flex-col space-y-5">
             <div>
         <a href="#" class="text-xs text-white/50">{{$job->employer->name}}</a>
