@@ -1,6 +1,6 @@
 @props(['job'])
 
-<x-panel class="justify-between">
+<x-panel class="flex justify-between">
     <div class="flex  space-x-5">
     <x-employer-logo :width="100"  class="w-[100px]" :$job ></x-employer-logo>
         <div class="flex flex-col space-y-5">
@@ -19,8 +19,13 @@
                   $now = \Carbon\Carbon::now();
                   $diffInMinutes = $created_at->diffInMinutes($now, true); // Absolute difference in minutes
                   $diffInHours = floor($diffInMinutes / 60); // Convert minutes to hours and floor it to get whole hours
+                  $diffInDays= floor($diffInHours/24)
             @endphp
+            @if($diffInHours<48)
             <x-tag class="bg-white/0 border border-white/10">{{$diffInHours}}h</x-tag>
+            @else
+                <x-tag class="bg-white/0 border border-white/10">{{$diffInDays}}d</x-tag>
+            @endif
         </div>
         <div>
             @foreach($job->tags as $tag)
